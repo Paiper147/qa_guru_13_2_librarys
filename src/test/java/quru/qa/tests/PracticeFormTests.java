@@ -53,10 +53,10 @@ public class PracticeFormTests {
         //вариант_1
 //        $("label[for=gender-radio-2]").click();
         //вариант_2
-//        SelenideElement sel = $(By.id("gender-radio-2"));
-//        executeJavaScript("arguments[0].click();", sel);
+        SelenideElement sel = $(By.id("gender-radio-2"));
+        executeJavaScript("arguments[0].click();", sel);
         //вариант 3
-        $("#genterWrapper").$(byText(gender)).click();
+//        $("#genterWrapper").$(byText(gender)).click();
 
         //Mobile
         $("#userNumber").setValue(mobileNumber);
@@ -79,8 +79,10 @@ public class PracticeFormTests {
 
         //Subjects
 //        $("#subjectsInput").setValue("m"); - НЕ работает
+        //вариант 1
         $("#subjectsInput").sendKeys(subjects);
         $("#subjectsInput").pressEnter();
+//        $("#subjectsInput").setValue(subjects).pressEnter(); - НЕ работает
 
         //Hobbies
 //        $("#hobbies-checkbox-2").setSelected(true); - НЕ работае
