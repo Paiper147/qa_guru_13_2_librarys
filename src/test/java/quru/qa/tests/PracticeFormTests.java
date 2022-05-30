@@ -51,10 +51,12 @@ public class PracticeFormTests {
         //Gender
 //        $("#gender-radio-2").selectRadio("Female"); - НЕ работает
         //вариант_1
-        $("label[for=gender-radio-2]").click();
+//        $("label[for=gender-radio-2]").click();
         //вариант_2
 //        SelenideElement sel = $(By.id("gender-radio-2"));
 //        executeJavaScript("arguments[0].click();", sel);
+        //вариант 3
+        $("#genterWrapper").$(byText(gender)).click();
 
         //Mobile
         $("#userNumber").setValue(mobileNumber);
@@ -81,8 +83,11 @@ public class PracticeFormTests {
         $("#subjectsInput").pressEnter();
 
         //Hobbies
-//        $("#hobbies-checkbox-2").setSelected(true); - НЕ работает
+//        $("#hobbies-checkbox-2").setSelected(true); - НЕ работае
+        //вариант 1
         $("label[for=hobbies-checkbox-2]").click();
+        //вариант 2
+//        $("#hobbiesWrapper").$(byText(hobbies)).click();
 
         //Picture
         File file = new File("src/test/java/quru/qa/tests/resourses/1.png");
@@ -93,13 +98,21 @@ public class PracticeFormTests {
 
         //State
 //        $("#state").click(); - НЕ обязательно, без этого работает
+        //вариант 1
         $("#react-select-3-input").sendKeys("Haryana");
         $("#react-select-3-input").pressEnter();
+        //вариант 2
+//        $("#state").scrollTo().click();
+//        $("#stateCity-wrapper").$(byText("Haryana")).click();
 
         //City
 //        $("#city").click(); - НЕ обязательно, без этого работает
+        //вариант 1
         $("#react-select-4-input").sendKeys("Panipat");
         $("#react-select-4-input").pressEnter();
+        //вариант 2
+//        $("#city").click();
+//        $("#stateCity-wrapper").$(byText("Panipat")).click();
 
         sleep(2000);
 
