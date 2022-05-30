@@ -39,7 +39,7 @@ public class PracticeFormTests {
         String birthday = "11 August,1992";
         String subjects = "Maths";
         String hobbies = "Reading";
-        String picture = "1.jpg";
+        String picture = "1.png";
         String address = "my currentAddress";
         String stateAndCity = "Haryana Panipat";
 
@@ -85,7 +85,7 @@ public class PracticeFormTests {
         $("label[for=hobbies-checkbox-2]").click();
 
         //Picture
-        File file = new File("src/test/java/quru/qa/tests/resourses/1.jpg");
+        File file = new File("src/test/java/quru/qa/tests/resourses/1.png");
         $("#uploadPicture").uploadFile(file);
 
         //Current Address
