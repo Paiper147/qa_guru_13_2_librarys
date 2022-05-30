@@ -20,7 +20,6 @@ public class PracticeFormTests {
     @BeforeAll
     static void beforeAll(){
         Configuration.baseUrl = "https://demoqa.com";
-//        Configuration.browserSize = "1920x1080";
         Configuration.browserSize = "1519x800";
     }
 
@@ -49,7 +48,6 @@ public class PracticeFormTests {
         $("#userEmail").setValue(email);
 
         //Gender
-//        $("#gender-radio-2").selectRadio("Female"); - НЕ работает
         //вариант_1
 //        $("label[for=gender-radio-2]").click();
         //вариант_2
@@ -63,29 +61,16 @@ public class PracticeFormTests {
 
         //Date of Birth
         $("#dateOfBirthInput").click();
-//        //$("#dateOfBirthInput").setValue("11 Aug 1992"); - НЕ работает
-//        //$(".react-datepicker__month-select").selectOption(7); //или selectOptionContainingText("August")
         $(".react-datepicker__month-select").selectOptionContainingText("August");
         $(".react-datepicker__year-select").selectOptionContainingText("1992");
-//        $(".react-datepicker__day react-datepicker__day--011").click(); - НЕ находит значение
         $("[aria-label=\"Choose Tuesday, August 11th, 1992\"]").click();
-//        $("[aria-label=Choose Tuesday, August 11th, 1992]").click(); //- invalid selector: An invalid or illegal selector was specified
-//        $("[label=Choose Tuesday, August 11th, 1992]").click(); - invalid selector: An invalid or illegal selector was specified
-
-//        executeJavaScript(String.format("$('#dateOfBirthInput').val('11 August 1992')")); - НЕ отправляет значение
-//        executeJavaScript(String.format("$('%s').datepicker('setDate', '%s')", ".react-datepicker__input-container", "11 August 1992"));- НЕ работает
-//        executeJavaScript(String.format("$('%s').datepicker('setDate', '%s')", "#dateOfBirthInput", "11 August 1992"));- НЕ работает
-//        executeJavaScript(String.format("$('{0}').datepicker('setDate', '{1}')", "#dateOfBirthInput", "11 August 1992"));- НЕ работает
 
         //Subjects
-//        $("#subjectsInput").setValue("m"); - НЕ работает
         //вариант 1
         $("#subjectsInput").sendKeys(subjects);
         $("#subjectsInput").pressEnter();
-//        $("#subjectsInput").setValue(subjects).pressEnter(); - НЕ работает
 
         //Hobbies
-//        $("#hobbies-checkbox-2").setSelected(true); - НЕ работае
         //вариант 1
         $("label[for=hobbies-checkbox-2]").click();
         //вариант 2
@@ -99,7 +84,6 @@ public class PracticeFormTests {
         $("#currentAddress").setValue(address);
 
         //State
-//        $("#state").click(); - НЕ обязательно, без этого работает
         //вариант 1
         $("#react-select-3-input").sendKeys("Haryana");
         $("#react-select-3-input").pressEnter();
@@ -108,7 +92,6 @@ public class PracticeFormTests {
 //        $("#stateCity-wrapper").$(byText("Haryana")).click();
 
         //City
-//        $("#city").click(); - НЕ обязательно, без этого работает
         //вариант 1
         $("#react-select-4-input").sendKeys("Panipat");
         $("#react-select-4-input").pressEnter();
