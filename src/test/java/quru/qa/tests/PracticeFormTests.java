@@ -1,5 +1,6 @@
 package quru.qa.tests;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,6 +11,8 @@ import org.openqa.selenium.WebElement;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeFormTests {
@@ -17,6 +20,7 @@ public class PracticeFormTests {
     @BeforeAll
     static void beforeAll(){
         Configuration.baseUrl = "https://demoqa.com";
+//        Configuration.browserSize = "1920x1080";
         Configuration.browserSize = "1519x800";
     }
 
@@ -25,22 +29,35 @@ public class PracticeFormTests {
 
         open("/automation-practice-form");
         executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#close-fixedban').remove()");
+
+        String name = "myName";
+        String lastName = "myLastName";
+        String email = "myEmail@mail.com";
+        String gender = "Female";
+        String mobileNumber = "0123456789";
+        String birthday = "11 August,1992";
+        String subjects = "Maths";
+        String hobbies = "Reading";
+        String picture = "1.jpg";
+        String address = "my currentAddress";
+        String stateAndCity = "Haryana Panipat";
 
         //Name + myLastName + userEmail
-        $("#firstName").setValue("myName");
-        $("#lastName").setValue("myLastName");
-        $("#userEmail").setValue("myEmail@mail.com");
+        $("#firstName").setValue(name);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(email);
 
         //Gender
 //        $("#gender-radio-2").selectRadio("Female"); - НЕ работает
         //вариант_1
         $("label[for=gender-radio-2]").click();
         //вариант_2
-        //SelenideElement sel = $(By.id("gender-radio-2"));
-        //executeJavaScript("arguments[0].click();", sel);
+//        SelenideElement sel = $(By.id("gender-radio-2"));
+//        executeJavaScript("arguments[0].click();", sel);
 
         //Mobile
-        $("#userNumber").setValue("0123456789");
+        $("#userNumber").setValue(mobileNumber);
 
         //Date of Birth
         $("#dateOfBirthInput").click();
@@ -53,20 +70,18 @@ public class PracticeFormTests {
 //        $("[aria-label=Choose Tuesday, August 11th, 1992]").click(); //- invalid selector: An invalid or illegal selector was specified
 //        $("[label=Choose Tuesday, August 11th, 1992]").click(); - invalid selector: An invalid or illegal selector was specified
 
-
-        //executeJavaScript(String.format("$('#dateOfBirthInput').val('11 August 1992')")); - НЕ отправляет значение
-        //executeJavaScript(String.format("$('%s').datepicker('setDate', '%s')", ".react-datepicker__input-container", "11 August 1992"));- НЕ работает
-        //executeJavaScript(String.format("$('%s').datepicker('setDate', '%s')", "#dateOfBirthInput", "11 August 1992"));- НЕ работает
-        //executeJavaScript(String.format("$('{0}').datepicker('setDate', '{1}')", "#dateOfBirthInput", "11 August 1992"));- НЕ работает
-        sleep(1000);
+//        executeJavaScript(String.format("$('#dateOfBirthInput').val('11 August 1992')")); - НЕ отправляет значение
+//        executeJavaScript(String.format("$('%s').datepicker('setDate', '%s')", ".react-datepicker__input-container", "11 August 1992"));- НЕ работает
+//        executeJavaScript(String.format("$('%s').datepicker('setDate', '%s')", "#dateOfBirthInput", "11 August 1992"));- НЕ работает
+//        executeJavaScript(String.format("$('{0}').datepicker('setDate', '{1}')", "#dateOfBirthInput", "11 August 1992"));- НЕ работает
 
         //Subjects
 //        $("#subjectsInput").setValue("m"); - НЕ работает
-        $("#subjectsInput").sendKeys("Maths");
+        $("#subjectsInput").sendKeys(subjects);
         $("#subjectsInput").pressEnter();
 
         //Hobbies
-        //$("#hobbies-checkbox-2").setSelected(true);
+//        $("#hobbies-checkbox-2").setSelected(true); - НЕ работает
         $("label[for=hobbies-checkbox-2]").click();
 
         //Picture
@@ -74,24 +89,32 @@ public class PracticeFormTests {
         $("#uploadPicture").uploadFile(file);
 
         //Current Address
-        $("#currentAddress").setValue("my currentAddress");
+        $("#currentAddress").setValue(address);
 
         //State
-        //$("#state").click(); - НЕ обязательно, без этого работает
+//        $("#state").click(); - НЕ обязательно, без этого работает
         $("#react-select-3-input").sendKeys("Haryana");
         $("#react-select-3-input").pressEnter();
 
         //City
-        //$("#city").click(); - НЕ обязательно, без этого работает
+//        $("#city").click(); - НЕ обязательно, без этого работает
         $("#react-select-4-input").sendKeys("Panipat");
         $("#react-select-4-input").pressEnter();
 
         sleep(2000);
 
+        //Клик Submit
         $("#submit").click();
 
         sleep(2000);
 
+        //Проверка вывода формы подтверждения
+        $(byText("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text(name),text(lastName),text(email),text(gender),
+                text(mobileNumber),text(birthday),text(subjects),text(hobbies),text(picture),text(address),text(stateAndCity));
+
+        //Клик Close
+        $("#closeLargeModal").click();
 
     }
 }
