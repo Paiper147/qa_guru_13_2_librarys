@@ -55,7 +55,6 @@ public class PracticeFormTests {
         $("[aria-label=\"Choose Tuesday, August 11th, 1992\"]").click();
 
         //Subjects
-        //вариант 1
         $("#subjectsInput").sendKeys(subjects);
         $("#subjectsInput").pressEnter();
 
