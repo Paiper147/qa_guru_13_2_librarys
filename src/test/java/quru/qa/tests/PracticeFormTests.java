@@ -62,7 +62,7 @@ public class PracticeFormTests {
         $("#hobbiesWrapper").$(byText(hobbies)).click();
 
         //Picture
-        File file = new File("src/test/java/quru/qa/tests/resourses/1.png");
+        File file = new File("src/test/resources/1.png");
         $("#uploadPicture").uploadFile(file);
 
         //Current Address
@@ -73,6 +73,7 @@ public class PracticeFormTests {
         $("#stateCity-wrapper").$(byText("Haryana")).click();
 
         //City
+        $("#city").scrollTo().click();
         $("#stateCity-wrapper").$(byText("Panipat")).click();
 
         //Клик Submit
