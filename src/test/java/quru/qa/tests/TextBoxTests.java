@@ -8,14 +8,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
-public class TextBoxTests {
-
-    @BeforeAll
-    static void beforeAll(){
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1519x800";
-    }
-
+public class TextBoxTests extends TestBase {
     @Test
     void successfullTest() {
         String name = "myName";

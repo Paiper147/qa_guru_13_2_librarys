@@ -1,6 +1,7 @@
 package quru.qa.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +11,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PracticeFormTests {
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1519x800";
-    }
+public class PracticeFormTests extends TestBase {
 
     @Test
     void successfullTestPracticeForm() {
@@ -30,7 +25,7 @@ public class PracticeFormTests {
         String email = "myEmail@mail.com";
         String gender = "Female";
         String mobileNumber = "0123456789";
-        String birthday = "11 August,1992";
+        String birthday = "30 August,1992";
         String subjects = "Maths";
         String hobbies = "Reading";
         String picture = "1.png";
@@ -44,6 +39,8 @@ public class PracticeFormTests {
 
         //Gender
         $("#genterWrapper").$(byText(gender)).click();
+//        $("#gender-radio-2").parent().click();
+//        $("[for=gender-radio-2]").click();
 
         //Mobile
         $("#userNumber").setValue(mobileNumber);
@@ -51,8 +48,13 @@ public class PracticeFormTests {
         //Date of Birth
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOptionContainingText("August");
+//        $(".react-datepicker__month-select").selectOption("August");
         $(".react-datepicker__year-select").selectOptionContainingText("1992");
-        $("[aria-label=\"Choose Tuesday, August 11th, 1992\"]").click();
+//        $(".react-datepicker__year-select").selectOption("1992");
+//        $("[aria-label=\"Choose Tuesday, August 11th, 1992\"]").click();//лучше не искать так
+        $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
+//<div class="react-datepicker__day react-datepicker__day--030 react-datepicker__day--outside-month" tabindex="-1" aria-label="Choose Thursday, July 30th, 1992" role="option" aria-disabled="false">30</div>
+//<div class="react-datepicker__day react-datepicker__day--030 react-datepicker__day--weekend" tabindex="-1" aria-label="Choose Sunday, August 30th, 1992" role="option" aria-disabled="false">30</div>
 
         //Subjects
         $("#subjectsInput").sendKeys(subjects);
@@ -62,8 +64,8 @@ public class PracticeFormTests {
         $("#hobbiesWrapper").$(byText(hobbies)).click();
 
         //Picture
-        File file = new File("src/test/resources/1.png");
-        $("#uploadPicture").uploadFile(file);
+//        $("#uploadPicture").uploadFile(new File("src/test/resources/img/1.png"));
+        $("#uploadPicture").uploadFromClasspath("img/1.png");
 
         //Current Address
         $("#currentAddress").setValue(address);
@@ -94,8 +96,13 @@ public class PracticeFormTests {
                 text(address),
                 text(stateAndCity)
         );
+//        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text(birthday));
+        checkTable("Student Name", name + " " + lastName);
 
         //Клик Close
         $("#closeLargeModal").click();
+    }
+    void checkTable (String key, String value) {
+        $(".table-responsive").$(byText(key)).parent().shouldHave(text(value));
     }
 }
