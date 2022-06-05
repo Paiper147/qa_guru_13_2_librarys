@@ -2,7 +2,7 @@ package quru.qa.tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
-import peges.PracticeFormPage;
+import pages.PracticeFormPage;
 
 public class TestBase {
 

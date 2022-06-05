@@ -1,11 +1,6 @@
 package quru.qa.tests;
 
 import org.junit.jupiter.api.Test;
-import peges.PracticeFormPage;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeFormWithPageObjectsTests extends TestBase {
 
