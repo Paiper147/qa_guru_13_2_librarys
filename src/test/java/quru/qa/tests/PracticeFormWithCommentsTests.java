@@ -1,17 +1,12 @@
 package quru.qa.tests;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.selector.ByText;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PracticeFormTests extends TestBase {
+public class PracticeFormWithCommentsTests extends TestBase {
 
     @Test
     void successfullTestPracticeForm() {
@@ -39,15 +34,22 @@ public class PracticeFormTests extends TestBase {
 
         //Gender
         $("#genterWrapper").$(byText(gender)).click();
+//        $("#gender-radio-2").parent().click();
+//        $("[for=gender-radio-2]").click();
 
         //Mobile
         $("#userNumber").setValue(mobileNumber);
 
         //Date of Birth
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("August");
-        $(".react-datepicker__year-select").selectOption("1992");
+        $(".react-datepicker__month-select").selectOptionContainingText("August");
+//        $(".react-datepicker__month-select").selectOption("August");
+        $(".react-datepicker__year-select").selectOptionContainingText("1992");
+//        $(".react-datepicker__year-select").selectOption("1992");
+//        $("[aria-label=\"Choose Tuesday, August 11th, 1992\"]").click();//лучше не искать так
         $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
+//<div class="react-datepicker__day react-datepicker__day--030 react-datepicker__day--outside-month" tabindex="-1" aria-label="Choose Thursday, July 30th, 1992" role="option" aria-disabled="false">30</div>
+//<div class="react-datepicker__day react-datepicker__day--030 react-datepicker__day--weekend" tabindex="-1" aria-label="Choose Sunday, August 30th, 1992" role="option" aria-disabled="false">30</div>
 
         //Subjects
         $("#subjectsInput").sendKeys(subjects);
@@ -57,6 +59,7 @@ public class PracticeFormTests extends TestBase {
         $("#hobbiesWrapper").$(byText(hobbies)).click();
 
         //Picture
+//        $("#uploadPicture").uploadFile(new File("src/test/resources/img/1.png"));
         $("#uploadPicture").uploadFromClasspath("img/1.png");
 
         //Current Address
@@ -74,7 +77,7 @@ public class PracticeFormTests extends TestBase {
         $("#submit").click();
 
         //Проверка вывода формы подтверждения
-        $(byText("Thanks for submitting the form"));
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $(".table-responsive").shouldHave(
                 text(name),
                 text(lastName),
@@ -88,8 +91,13 @@ public class PracticeFormTests extends TestBase {
                 text(address),
                 text(stateAndCity)
         );
+//        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text(birthday));
+        checkTable("Student Name", name + " " + lastName);
 
         //Клик Close
         $("#closeLargeModal").click();
+    }
+    void checkTable (String key, String value) {
+        $(".table-responsive").$(byText(key)).parent().shouldHave(text(value));
     }
 }

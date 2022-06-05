@@ -1,4 +1,4 @@
-package quru.qa.tests;
+package quru.qa.tests.docs;
 
 import org.junit.jupiter.api.*;
 
