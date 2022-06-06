@@ -15,7 +15,7 @@ public class PracticeFormWithPageObjectsTests extends TestBase {
         String birthday = "30 August,1992";
         String dayBirthday = "30";
         String monthBirthday = "August";
-        String yearBrthday = "1992";
+        String yearBirthday = "1992";
         String subjects = "Maths";
         String hobbies = "Reading";
         String picture = "1.png";
@@ -31,7 +31,7 @@ public class PracticeFormWithPageObjectsTests extends TestBase {
                 .setEmail(email)
                 .setGender(gender)
                 .setMobileNumber(mobileNumber)
-                .setDateOfBirth(dayBirthday, monthBirthday, yearBrthday)
+                .setDateOfBirth(dayBirthday, monthBirthday, yearBirthday)
                 .setSubjects(subjects)
                 .setHobbies(hobbies)
                 .setPicture(picturePath)
