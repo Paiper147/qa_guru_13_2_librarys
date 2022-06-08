@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class PracticeFormWithCommentsTests extends TestBase {
 
     @Test
-    void successfullTestPracticeForm() {
+    void successfulTestPracticeForm() {
 
         open("/automation-practice-form");
         executeJavaScript("$('footer').remove()");

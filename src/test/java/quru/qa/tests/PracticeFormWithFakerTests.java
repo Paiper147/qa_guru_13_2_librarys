@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class PracticeFormWithFakerTests extends TestBase {
 
     @Test
-    void successfullTestPracticeForm() {
+    void successfulTestPracticeForm() {
 //        Faker faker = new Faker();
 //        Faker faker = new Faker(new Locale("ru"));
         Faker faker = new Faker(new Locale("en"));

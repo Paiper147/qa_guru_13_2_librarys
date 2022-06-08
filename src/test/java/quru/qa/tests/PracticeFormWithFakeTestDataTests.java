@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static utils.RandomUtils.*;
 
-public class PracticeFormWithTestDataTests extends TestBase {
+public class PracticeFormWithFakeTestDataTests extends TestBase {
 
     @Test
     void successfulTestPracticeForm() {
@@ -39,7 +39,7 @@ public class PracticeFormWithTestDataTests extends TestBase {
         //Date of Birth
         LocalDate birthdayLocalDate = getRandomBirthday();
         int dayBirthday = birthdayLocalDate.getDayOfMonth();
-        String dayBirthdayWithZeroes = String.format("%03d", dayBirthday);
+        String dayBirthdayWithZeroes = String.format("%02d", dayBirthday);
         //month of Birthday
         String monthBirthday = birthdayLocalDate
                 .getMonth()
@@ -49,7 +49,7 @@ public class PracticeFormWithTestDataTests extends TestBase {
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(monthBirthday);
         $(".react-datepicker__year-select").selectOption(yearBirthday);
-        $(".react-datepicker__day--" + dayBirthdayWithZeroes + ":not(.react-datepicker__day--outside-month)").click();
+        $(".react-datepicker__day--0" + dayBirthdayWithZeroes + ":not(.react-datepicker__day--outside-month)").click();
 
         //Subjects
         int amountOfSubjects = 5;
@@ -82,7 +82,6 @@ public class PracticeFormWithTestDataTests extends TestBase {
         String city = getRandomFromInputArray(TestData.STATE_AND_CITY_MAP.get(state));
         $("#city").scrollTo().click();
         $("#stateCity-wrapper").$(byText(city)).click();
-        String stateAndCity = state + " " + city;
 
         //Клик Submit
         $("#submit").click();
@@ -91,6 +90,7 @@ public class PracticeFormWithTestDataTests extends TestBase {
         String birthday = dayBirthday + " " + monthBirthday + "," + yearBirthday;
         String subjects = Joiner.on(", ").join(subjectsList);
         String hobbies = Joiner.on(", ").join(hobbiesList);
+        String stateAndCity = state + " " + city;
         $(byText("Thanks for submitting the form"));
         $(".table-responsive").shouldHave(
                 text(name),

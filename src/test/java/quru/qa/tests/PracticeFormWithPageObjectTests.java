@@ -2,7 +2,7 @@ package quru.qa.tests;
 
 import org.junit.jupiter.api.Test;
 
-public class PracticeFormWithPageObjectsTests extends TestBase {
+public class PracticeFormWithPageObjectTests extends TestBase {
 
     @Test
     void successfulTestPracticeForm() {
