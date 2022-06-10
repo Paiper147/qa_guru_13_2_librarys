@@ -5,9 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import pages.PracticeFormPage;
 
 public class TestBase {
-
     PracticeFormPage practiceFormPage = new PracticeFormPage();
-
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";

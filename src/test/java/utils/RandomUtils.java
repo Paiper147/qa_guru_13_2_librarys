@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class RandomUtils {
@@ -85,10 +86,10 @@ public class RandomUtils {
         return LocalDate.ofEpochDay(randomDay);
     }
 
-    public static ArrayList<String> getRandomListStringsDesiredSize(String[] inputArray, int desiredOutputSize) {
-        ArrayList<String> outputList = new ArrayList<>();
+    public static List<String> getRandomListStringsDesiredSize(String[] inputArray, int desiredOutputSize) {
+        List<String> outputList = new ArrayList<>();
 
-        ArrayList<Integer> listNumbers = new ArrayList<>();
+        List<Integer> listNumbers = new ArrayList<>();
         for (int i = 0; i < (inputArray.length); i++) {
             listNumbers.add(i);
         }
